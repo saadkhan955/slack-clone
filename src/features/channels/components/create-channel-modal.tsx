@@ -17,6 +17,7 @@ export const CreateChannelModal = () => {
   const [open, setOpen] = useCreateChannelModal()
   const { mutate, isPending } = useCreateChannel()
   const [name, setName] = useState("")
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\s+/g, "-").toLowerCase()
     setName(value)
