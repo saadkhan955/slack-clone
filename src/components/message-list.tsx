@@ -1,5 +1,8 @@
 import { GetMessagesReturnType } from "@/features/messages/api/use-get-messages";
-import { format, isToday, isYesterday } from 'date-fns';
+import { differenceInMinutes, format, isToday, isYesterday } from 'date-fns';
+import { Message } from "./message";
+
+const TIME_THRESHOLD = 5;
 
 interface MessageListProps {
   memberName?: string
@@ -50,7 +53,7 @@ export const MessageList = ({
 
   return <div
     className="flex flex-col-reverse flex-1 pb-4 overflow-y-auto message-scrollbar">
-    {Object.entries(groupedMessages || {}).map(([dateKey, message]) => (
+    {Object.entries(groupedMessages || {}).map(([dateKey, messages]) => (
       <div key={dateKey}>
         <div className="text-center my-2 relative">
           <hr className="absolute top-1/2 left-0 right-0 border-t border-gray-300" />
@@ -58,11 +61,36 @@ export const MessageList = ({
             {formatDateLabel(dateKey)}
           </span>
         </div>
-        {message.map((message, index) => {
+        {messages.map((message, index) => {
+          const prevMessage = messages[index - 1];
+          const isCompact =
+            prevMessage &&
+            prevMessage.user?._id === message.user?._id &&
+            differenceInMinutes(
+              new Date(message._creationTime),
+              new Date(prevMessage._creationTime)
+            ) < TIME_THRESHOLD
           return (
-            <div key={message._id}>
-              {JSON.stringify(message)}
-            </div>
+            <Message
+              key={message._id}
+              id={message._id}
+              memberId={message.memberId}
+              authorImage={message.user.image}
+              authorName={message.user.name}
+              isAuthor={false}
+              reactions={message.reactions}
+              body={message.body}
+              image={message.image}
+              updatedAt={message.updatedAt}
+              createdAt={message._creationTime}
+              isEditing={false}
+              setEditingId={() => { }}
+              isCompact={isCompact}
+              hideThreadButton={false}
+              threadCount={message.threadCount}
+              threadImage={message.threadImage}
+              threadTimestamp={message.threadTimestamp}
+            />
           )
         })}
       </div>
