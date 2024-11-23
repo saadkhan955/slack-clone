@@ -8,7 +8,7 @@ import { ChannelHero } from "./channel-hero";
 
 import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { useCurrentMember } from "@/features/members/api/use-current-member";
-import { GetMessagesReturnType } from "@/features/messages/api/use-get-messages";
+import { getMessagesReturnType } from "@/features/messages/api/use-get-messages";
 
 const TIME_THRESHOLD = 5;
 
@@ -18,7 +18,7 @@ interface MessageListProps {
   channelName?: string
   channelCreationTime?: number
   variant?: "channel" | "thread" | "conversation"
-  data: GetMessagesReturnType | undefined
+  data: getMessagesReturnType | undefined
   loadMore?: () => void
   isLoadingMore?: boolean
   canLoadMore?: boolean

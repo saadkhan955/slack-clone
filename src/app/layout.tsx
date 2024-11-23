@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { ConvexClientProvider } from '@/components/cvonvex-client-provider'
+import { ConvexClientProvider } from '@/components/convex-client-provider'
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 
 import "./globals.css";

@@ -2,8 +2,8 @@ import dynamic from "next/dynamic";
 import Quill from "quill";
 import { useRef, useState } from "react";
 
-import { UseCreateMessage } from "@/features/messages/api/use-create-message";
-import { UseGenerateUploadUrl } from "@/features/upload/api/use-generate-upload-url";
+import { useCreateMessage } from "@/features/messages/api/use-create-message";
+import { useGenerateUploadUrl } from "@/features/upload/api/use-generate-upload-url";
 import { useChannelId } from "@/hooks/use-channel-id";
 import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { toast } from "sonner";
@@ -30,8 +30,8 @@ export const ChatInput = ({ placeholder }: ChatInputProps) => {
   const editorRef = useRef<Quill | null>(null);
   const workspaceId = useWorkspaceId()
   const channelId = useChannelId()
-  const { mutate: generateUploadUrl } = UseGenerateUploadUrl()
-  const { mutate: createMessage } = UseCreateMessage()
+  const { mutate: generateUploadUrl } = useGenerateUploadUrl()
+  const { mutate: createMessage } = useCreateMessage()
 
   const handleSubmit = async ({
     body,
