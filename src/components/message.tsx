@@ -73,7 +73,7 @@ export const Message = ({
   threadTimestamp
 }: MessageProps) => {
 
-  const { parentMessageId, onOpenMessage, onClose } = usePanel();
+  const { parentMessageId, onOpenMessage, onOpeProfile, onClose } = usePanel();
 
   const [ConfirmDialog, confirm] = useConfirm(
     "Delete Message",
@@ -194,7 +194,9 @@ export const Message = ({
       <div className={cn("flex flex-col gap-2 p-1.5 px-5 hover:bg-gray-100/60 group relative", isEditing && "bg-[#f2c74433] hover:bg-[#f2c74433]",
         isRemovingMessage && "bg-rose-500/50 transform transition-all scale-y-0 origin-bottom duration-200")}>
         <div className="flex items-start gap-2">
-          <button>
+          <button
+            onClick={() => onOpeProfile(memberId)}
+          >
             <Avatar>
               <AvatarImage src={authorImage} />
               <AvatarFallback>
@@ -215,7 +217,7 @@ export const Message = ({
           ) : (
             <div className="flex flex-col w-full overflow-hidden">
               <div className="text-sm">
-                <button onClick={() => { }} className="font-bold text-primary hover:underline">{authorName}</button>
+                <button onClick={() => onOpeProfile(memberId)} className="font-bold text-primary hover:underline">{authorName}</button>
                 <span>&nbsp;</span>
                 <Hint label={formatFullTime(new Date(createdAt))}>
                   <button className="text-xs text-muted-foreground hover:underline">

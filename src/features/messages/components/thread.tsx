@@ -1,5 +1,5 @@
 import { differenceInMinutes, format, isToday, isYesterday } from "date-fns"
-import { AlertTriangle, Loader, X } from "lucide-react"
+import { AlertTriangle, Loader, XIcon } from "lucide-react"
 import dynamic from "next/dynamic"
 import Quill from "quill"
 import { useRef, useState } from "react"
@@ -148,7 +148,7 @@ export const Thread = ({ messageId, onClose }: ThreadProps) => {
         <div className="flex justify-between items-center px-4 h-[49px] border-b">
           <p className="text-lg font-bold">Thread</p>
           <Button onClick={onClose} size={"iconSm"} variant={"ghost"}>
-            <X className="size-5 start-1.5" />
+            <XIcon className="size-5 start-1.5" />
           </Button>
         </div>
         <div className="flex flex-col gap-y-2 h-full items-center justify-center">
@@ -163,7 +163,7 @@ export const Thread = ({ messageId, onClose }: ThreadProps) => {
         <div className="flex justify-between items-center px-4 h-[49px] border-b">
           <p className="text-lg font-bold">Thread</p>
           <Button onClick={onClose} size={"iconSm"} variant={"ghost"}>
-            <X className="size-5 start-1.5" />
+            <XIcon className="size-5 start-1.5" />
           </Button>
         </div>
         <div className="flex flex-col gap-y-2 h-full items-center justify-center">
@@ -178,7 +178,7 @@ export const Thread = ({ messageId, onClose }: ThreadProps) => {
       <div className="flex justify-between items-center px-4 h-[49px] border-b">
         <p className="text-lg font-bold">Thread</p>
         <Button onClick={onClose} size={"iconSm"} variant={"ghost"}>
-          <X className="size-5 start-1.5" />
+          <XIcon className="size-5 start-1.5" />
         </Button>
       </div>
       <div className="flex flex-col-reverse flex-1 pb-4 overflow-y-auto message-scrollbar">
