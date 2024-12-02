@@ -1,14 +1,15 @@
 import { ImageIcon, Smile, XIcon } from "lucide-react";
+import Image from "next/image";
 import Quill, { QuillOptions } from "quill";
 import { Delta, Op } from "quill/core";
 import { MutableRefObject, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { MdSend } from "react-icons/md";
 import { PiTextAa } from "react-icons/pi";
 
+import { cn } from "@/lib/utils";
+
 import "quill/dist/quill.snow.css";
 
-import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { EmojiPopover } from "./emoji-popover";
 import { Hint } from "./hint";
 import { Button } from "./ui/button";
@@ -137,10 +138,10 @@ const Editor = ({
     }
   }
 
-  const onEmojiSelect = (emoji: any) => {
+  const onEmojiSelect = (emojiValue: string) => {
     const quill = quillRef.current;
 
-    quill?.insertText(quill.getSelection()?.index || 0, emoji.native);
+    quill?.insertText(quill.getSelection()?.index || 0, emojiValue);
   }
 
   const isEmpty = !image && text.replace(/<(.|\n)*?>/g, "").trim().length === 0;
