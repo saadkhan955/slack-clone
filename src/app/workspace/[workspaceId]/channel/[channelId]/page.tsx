@@ -15,7 +15,6 @@ const ChannelIdPage = () => {
   const channelId = useChannelId()
   const { results, status, loadMore } = UseGetMessages({ channelId })
   const { data: channel, isLoading: channelLoading } = UseGetChannel({ id: channelId })
-  console.log({ results });
 
   if (channelLoading || status === "LoadingFirstPage") {
     return (
